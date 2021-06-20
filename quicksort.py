@@ -4,7 +4,7 @@ Created on Wed Oct 17 00:21:45 2018
 
 @author: nakahashi
 """
-S=[7,4,6,3,2,8,91,18,34,22,57]
+S=[7,4,6,3,2,8,91,18,34,22,]
 def quicksort(seq):
     if len(seq) < 1:
         return seq
