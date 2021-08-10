@@ -1,21 +1,22 @@
 yoko=[1,2,3,4,5,6,7,8]
+tate=[]
+
+
 
 for a in range(1,9):
     na="l"+str(a)
     na=[0 for b in range(1,9)]
-    # print(na)
+    tate.append(na)
+# [print(l) for l in tate]
 
-def co(line,yo):
+def co(line,yo,l=0):
     for a in yo:
-        na="l"+str(line)
-        na[a]=1
-        line +=1
-        del yo[a]
+        line[l][a-1]=1
+        l +=1
+        yo.remove(a)
         if len(yo)>0:
-            co(line,yo)
+            co(line,yo,l)
         else:
-            for a in range(1,9):
-                na="l"+str(a)
-                print(na)
+            [print(l) for l in line]
 
-r=co(1,yoko)
+r=co(tate,yoko)
