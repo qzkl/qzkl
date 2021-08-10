@@ -5,9 +5,10 @@ x_a=[]
 y_a=[]
 
 for x in range(-180,180):
-
-    sin_a=math.sin(math.radians(x))
-    y=sin_a
+    y=0
+    for n in range(0,1000):
+        sin_a=math.sin((2*n+1)*math.radians(x))/(2*n+1)
+        y=y+4/math.pi*sin_a
     x_a.append(x)
     y_a.append(y)
 
