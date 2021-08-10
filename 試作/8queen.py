@@ -1,22 +1,20 @@
-yoko=[1,2,3,4,5,6,7,8]
-tate=[]
+pos=[0]*8
+flag=[False]*8
 
+def put():
+    for i in range(8):
+        print(f'{pos[i]:2}',end=" ")
+    print()
 
+def set(i):
+    for j in range(8):
+        if not flag[j]:
+            pos[i]=j
+            if i==7:
+                put()
+            else:
+                flag[j]=True
+                set(i+1)
+                flag[j]=False
 
-for a in range(1,9):
-    na="l"+str(a)
-    na=[0 for b in range(1,9)]
-    tate.append(na)
-# [print(l) for l in tate]
-
-def co(line,yo,l=0):
-    for a in yo:
-        line[l][a-1]=1
-        l +=1
-        yo.remove(a)
-        if len(yo)>0:
-            co(line,yo,l)
-        else:
-            [print(l) for l in line]
-
-r=co(tate,yoko)
+set(0)
