@@ -1,14 +1,14 @@
 import matplotlib.pyplot as plt
 import math 
+import numpy as np
 # pyplotモジュールを"plt"という名前でインポートする
 x_a=[]
 y_a=[]
+a=2
 
-for x in range(-540,540):
-    y=0
-    for n in range(0,1000):
-        sin_a=math.sin((2*n+1)*math.radians(x))/(2*n+1)
-        y=y+4/math.pi*sin_a
+for x in np.arange(-20,20,0.01):
+    y=a/(a**2+x**2)
+
     x_a.append(x)
     y_a.append(y)
 
