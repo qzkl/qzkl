@@ -44,8 +44,8 @@ def draw_pendulum(ln,rad,color):
         x=ln*np.cos(np.radians(rad))
         y=ln*np.sin(np.radians(rad))
         origin=[600,0]
-        x1=origin[0]+(ln+r)*np.cos(np.radians(rad))*np.sin(np.radians(rad))
-        y1=origin[1]+(ln+r)*np.sin(np.radians(rad))*np.sin(np.radians(rad))
+        x1=origin[0]+(ln+r)*np.cos(np.radians(rad))
+        y1=origin[1]+(ln+r)*np.sin(np.radians(rad))
         
         cv.delete("all")
         
@@ -57,7 +57,8 @@ def draw_pendulum(ln,rad,color):
         if rad<=rad1:
             rad1=rad0
             rad+=radt
-        
+            
+            
         elif rad>=rad1:
             rad1=180-rad0
             rad+=-1*radt
