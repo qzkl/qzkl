@@ -93,7 +93,7 @@ def draw_load(x,H,rball,k,m,t_end,color):
         #    elapsed_time = time.time() - start
         #    id2=cv.create_text(x1-100,y1,text=str(round(elapsed_time,2)),font=('Times New Roman', 20))
         
-        if len(di)>0 and round(y1,1)<round(y_frm,1)*it and va>0 :
+        if len(di)>0 and round(y1,0)<round(y_frm,0)*it and va>0 :
             cv.delete(di[-1])
             del di[-1]
         elif va>0:  
