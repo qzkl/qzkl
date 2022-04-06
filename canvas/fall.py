@@ -25,7 +25,7 @@ def draw_circle(x,y,r,color):
     y2=y+r
     return cv.create_oval(x1,y1,x2,y2,fill=color)
 
-def draw_load(x,H,rball,k,m,t_ori,t_end,color):
+def draw_load(x,H,rball,k,m,t_end,color):
     
     by=H/hei
     t=0
@@ -93,7 +93,7 @@ def draw_load(x,H,rball,k,m,t_ori,t_end,color):
         #    elapsed_time = time.time() - start
         #    id2=cv.create_text(x1-100,y1,text=str(round(elapsed_time,2)),font=('Times New Roman', 20))
         
-        if len(di)>0 and round(y1,2)<round(y_frm,2)*it and va>0 :
+        if len(di)>0 and round(y1,1)<round(y_frm,1)*it and va>0 :
             cv.delete(di[-1])
             del di[-1]
         elif va>0:  
@@ -146,8 +146,8 @@ tlist.append(t2)
 T=max(tlist)
 
 
-ball=draw_load(500,H,rball1,k1,m1,t1,T,"#ff0000")
-ball2=draw_load(800,H,rball2,k2,m2,t2,T,"#f000f0")
+ball=draw_load(500,H,rball1,k1,m1,T,"#ff0000")
+ball2=draw_load(800,H,rball2,k2,m2,T,"#f000f0")
 
 ball()
 ball2()
