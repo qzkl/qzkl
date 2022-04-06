@@ -130,7 +130,6 @@ def draw_load(x,H,rball,k,m,t_ori,t_end,color):
 
 tlist=[]
 
-
 H=1000
 rball1=10
 k1=0.4
