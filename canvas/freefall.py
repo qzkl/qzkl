@@ -14,7 +14,8 @@ cv=tkinter.Canvas(root,width=wid,height=hei)
 cv.place(x=0,y=0)
 
 g=9.80665
-
+# 摩擦係数
+u=0.2
 # コマ数
 ta=0.03
 
@@ -25,35 +26,31 @@ def draw_circle(x,y,r,color):
     y2=y+r
     return cv.create_oval(x1,y1,x2,y2,fill=color)
 
-def draw_load(x,H,rball,k,m,t_ori,t_end,color):
+def draw_load(v0,H,rball,color):
     
     by=H/hei
     t=0
     di=[]
     di2=[]
     
-    origin=[x,0]
+    origin=[500,0]
     line=hei-100
     
     
     cv.create_line(0,line,wid,line,fill=color)
     
-    cv.create_text(300,200,text="H="+str(int(hei*by)),
+    cv.create_text(origin[0]-200,origin[1]+200,text="H="+str(int(hei*by)),
                     font=('Times New Roman', 30))
-     
+    # root.after(30,draw_load)    
     
     vt=0
-    
+    # x2=[]
     t=0
     lt2=0
     i=0
     it=1
-    
-    
-    T=np.sqrt(m/(g*k))
-    V=np.sqrt(m*g/k)
-    
-    y_frm=H/by/10
+    a2=g
+    tta=(-2*0+np.sqrt(4*a2*2*hei*by))/(2*a2)
     
     def canvs_ball():
         
@@ -65,13 +62,13 @@ def draw_load(x,H,rball,k,m,t_ori,t_end,color):
         # 直線の移動座標
  
         
-        va=V*np.tanh(t/T)
-
+        va=t*a2+v0
+      
         if t==0:
-            lt1=V*T*np.log(np.cosh(t/T))
+            lt1=(a2*t**2)/2+v0*t
             
         else:
-            lt1=V*T*np.log(np.cosh(t/T))-(V*T*np.log(np.cosh((t-ta)/T)))
+            lt1=(a2*t**2)/2+v0*t-((a2*(t-ta)**2)/2+v0*(t-ta))
         
         if va<=0:
             va=0
@@ -89,11 +86,11 @@ def draw_load(x,H,rball,k,m,t_ori,t_end,color):
             i+=1
         
         if i==1:
-           id2=cv.create_text(x1+200,y1,text=str(round(t,2)),font=('Times New Roman', 20)) 
+           id2=cv.create_text(x1+100,y1,text=str(round(t,2)),font=('Times New Roman', 20)) 
         #    elapsed_time = time.time() - start
         #    id2=cv.create_text(x1-100,y1,text=str(round(elapsed_time,2)),font=('Times New Roman', 20))
         
-        if len(di)>0 and round(y1,2)<round(y_frm,2)*it and va>0 :
+        if len(di)>0 and round(t,2)<round(tta/10,2)*it and va>0 :
             cv.delete(di[-1])
             del di[-1]
         elif va>0:  
@@ -107,7 +104,7 @@ def draw_load(x,H,rball,k,m,t_ori,t_end,color):
         if va>0:
             di.append(id)
         
-        if t>=t_end+10:
+        if t>=tta+5:
             
             x1=origin[0]
             y1=origin[1]
@@ -116,7 +113,7 @@ def draw_load(x,H,rball,k,m,t_ori,t_end,color):
             
             cv.delete("all")
             cv.create_line(0,line,wid,line,fill=color)
-            cv.create_text(300,200,text="H="+str(int(hei*by)),
+            cv.create_text(origin[0]-200,origin[1]+200,text="H="+str(hei*by),
                     font=('Times New Roman', 30))
             di=[]
             di2=[]
@@ -128,28 +125,7 @@ def draw_load(x,H,rball,k,m,t_ori,t_end,color):
 
     return canvs_ball
 
-tlist=[]
-
-H=1000
-rball1=10
-k1=0.4
-m1=70
-t1=np.sqrt(m1/g/k1)*np.arccosh(np.exp(H*k1/m1))
-tlist.append(t1)
-
-rball2=10
-k2=0.4
-m2=100
-t2=np.sqrt(m2/g/k2)*np.arccosh(np.exp(H*k2/m2))
-tlist.append(t2)
-
-T=max(tlist)
-
-
-ball=draw_load(500,H,rball1,k1,m1,t1,T,"#ff0000")
-ball2=draw_load(800,H,rball2,k2,m2,t2,T,"#f000f0")
-
+ball=draw_load(0,10000,10,"#ff0000")
 ball()
-ball2()
 
 root.mainloop()
