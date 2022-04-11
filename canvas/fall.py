@@ -146,7 +146,7 @@ tlist.append(t2)
 T=max(tlist)
 
 
-ball=draw_load(500,H,rball1,k1,m1,T,"#ff0000")
+ball=draw_load(510,H,rball1,k1,m1,T,"#ff0000")
 ball2=draw_load(800,H,rball2,k2,m2,T,"#f000f0")
 
 ball()
